@@ -105,6 +105,7 @@ st.markdown("""
 <link rel="icon" href="static/favicon.ico" type="image/x-icon">
 """, unsafe_allow_html=True)
 
+# Lazy-initialized components to speed up first paint
 class NewsAnalyzer:
     """Financial news detection and analysis system"""
     
@@ -183,24 +184,30 @@ class AIAnalyst:
             st.error(f"AI analysis error: {e}")
             return None
 
-# Initialize components
+# Cached getters (lazy creation on first use)
 @st.cache_resource
-def initialize_components():
-    """Initialize all analysis components with caching"""
-    return {
-        'news': NewsAnalyzer(),
-        'event_study': EventStudyAnalyzer(),
-        'market_data': MarketDataManager(),
-        'asset_search': AssetSearcher(),
-        'ai_analyst': AIAnalyst()
-    }
+def get_news_analyzer() -> NewsAnalyzer:
+    return NewsAnalyzer()
+
+@st.cache_resource
+def get_event_study_analyzer() -> EventStudyAnalyzer:
+    return EventStudyAnalyzer()
+
+@st.cache_resource
+def get_market_data_manager() -> MarketDataManager:
+    return MarketDataManager()
+
+@st.cache_resource
+def get_asset_searcher() -> AssetSearcher:
+    return AssetSearcher()
+
+@st.cache_resource
+def get_ai_analyst() -> AIAnalyst:
+    return AIAnalyst()
 
 # Main application
 def main():
     """Main application function"""
-    
-    # Initialize components
-    components = initialize_components()
     
     # Header
     st.markdown("""
@@ -270,37 +277,38 @@ def main():
         
         # Run analysis based on mode
         if analysis_mode == "Manual Event Study":
-            run_manual_analysis(components, event_date, event_description, assets, estimation_window, event_window)
+            run_manual_analysis(event_date, event_description, assets, estimation_window, event_window)
         else:
-            run_ai_analysis(components, event_date, event_description, assets, estimation_window, event_window)
+            run_ai_analysis(event_date, event_description, assets, estimation_window, event_window)
 
-def run_manual_analysis(components, event_date, event_description, assets, estimation_window, event_window):
+def run_manual_analysis(event_date, event_description, assets, estimation_window, event_window):
     """Run manual event study analysis"""
     
     with st.spinner("Running event study analysis..."):
-        # Run event study analysis
-        results = components['event_study'].run_analysis(
+        analyzer = get_event_study_analyzer()
+        results = analyzer.run_analysis(
             event_date, event_description, assets, estimation_window, event_window
         )
         
         if results:
             display_results(results, assets)
 
-def run_ai_analysis(components, event_date, event_description, assets, estimation_window, event_window):
+def run_ai_analysis(event_date, event_description, assets, estimation_window, event_window):
     """Run AI-powered analysis"""
     
     with st.spinner("Running AI-powered analysis..."):
-        # Fetch news data
-        news_data = components['news'].fetch_financial_news(str(event_date))
+        # Fetch news data (cached analyzer, I/O happens only on first call per session)
+        news = get_news_analyzer()
+        news_data = news.fetch_financial_news(str(event_date))
         
-        # Run event study analysis
-        results = components['event_study'].run_analysis(
+        analyzer = get_event_study_analyzer()
+        results = analyzer.run_analysis(
             event_date, event_description, assets, estimation_window, event_window
         )
         
         if results:
-            # AI analysis
-            ai_insights = components['ai_analyst'].analyze_market_impact(
+            ai = get_ai_analyst()
+            ai_insights = ai.analyze_market_impact(
                 {'date': event_date, 'description': event_description, 'news': news_data},
                 results
             )
