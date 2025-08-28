@@ -37,6 +37,9 @@ st.set_page_config(
 # Optimized CSS for fast loading
 st.markdown("""
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+html, body, [class^="css"] { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+
 /* Core responsive design */
 @media (max-width: 768px) {
     .main .block-container { padding: 1rem; max-width: 100%; }
@@ -48,6 +51,21 @@ st.markdown("""
     .main .block-container { max-width: 1200px; padding: 2rem; }
     .stColumns > div { gap: 2rem !important; }
 }
+
+/* TradingView-like Topbar */
+.tv-topbar {
+    position: sticky; top: 0; z-index: 1002; backdrop-filter: saturate(180%) blur(10px);
+    background: rgba(255,255,255,0.85); border-bottom: 1px solid #eaecef; padding: 0.5rem 1rem; margin: -1rem -1rem 1rem -1rem;
+}
+.tv-topbar .inner { display: flex; align-items: center; gap: 12px; max-width: 1200px; margin: 0 auto; }
+.tv-brand { font-weight: 700; color: #0f4c75; letter-spacing: 0.3px; }
+.tv-nav { display: flex; gap: 16px; align-items: center; margin-left: 8px; }
+.tv-link { color: #334155; text-decoration: none; font-weight: 600; font-size: 0.92rem; }
+.tv-link:hover { color: #0f4c75; }
+.tv-search { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+.tv-input { border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px 12px; min-width: 220px; }
+.tv-btn { border: 1px solid #0f4c75; color: #0f4c75; background: #ffffff; border-radius: 8px; padding: 8px 12px; font-weight: 600; }
+.tv-btn.primary { background: #0f4c75; color: #ffffff; border-color: #0f4c75; }
 
 /* Optimized chart styling */
 .plotly-graph-div {
@@ -77,6 +95,12 @@ st.markdown("""
     margin: 0.5rem 0;
 }
 
+/* Quick action cards */
+.tv-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.03); }
+.tv-card h4 { margin: 0 0 6px 0; font-size: 1.0rem; }
+.tv-card p { margin: 0 0 10px 0; color: #475569; font-size: 0.92rem; }
+.tv-card .actions { display: flex; gap: 8px; }
+
 /* Success alert */
 .success-alert {
     background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
@@ -104,6 +128,29 @@ st.markdown("""
 <link rel="shortcut icon" href="static/favicon.png" type="image/png">
 <link rel="icon" href="static/favicon.ico" type="image/x-icon">
 """, unsafe_allow_html=True)
+
+# TradingView-like top bar
+st.markdown(
+    """
+    <div class="tv-topbar">
+      <div class="inner">
+        <div class="tv-brand">QUANTFIN</div>
+        <div class="tv-nav">
+          <a class="tv-link" href="#">Markets</a>
+          <a class="tv-link" href="#">Analysis</a>
+          <a class="tv-link" href="#">AI Insights</a>
+          <a class="tv-link" href="#">Docs</a>
+        </div>
+        <div class="tv-search">
+          <input class="tv-input" placeholder="Search assets, tickers, news" />
+          <button class="tv-btn">Log in</button>
+          <button class="tv-btn primary">Launch</button>
+        </div>
+      </div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
 # Lazy-initialized components to speed up first paint
 class NewsAnalyzer:
@@ -216,6 +263,51 @@ def main():
         <p>Professional Event Study Analysis Platform</p>
     </div>
     """, unsafe_allow_html=True)
+
+    # Quick actions (TradingView-like cards)
+    qc1, qc2, qc3 = st.columns(3)
+    with qc1:
+        st.markdown(
+            """
+            <div class="tv-card">
+              <h4>New Event Study</h4>
+              <p>Run a manual CAPM-based analysis</p>
+              <div class="actions">
+                <a class="tv-btn primary" href="#">Start</a>
+                <a class="tv-btn" href="#">Learn</a>
+              </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    with qc2:
+        st.markdown(
+            """
+            <div class="tv-card">
+              <h4>AI News Detection</h4>
+              <p>Identify market-moving events with AI</p>
+              <div class="actions">
+                <a class="tv-btn primary" href="#">Detect</a>
+                <a class="tv-btn" href="#">Docs</a>
+              </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    with qc3:
+        st.markdown(
+            """
+            <div class="tv-card">
+              <h4>Market Data</h4>
+              <p>Fetch clean historical asset data</p>
+              <div class="actions">
+                <a class="tv-btn" href="#">API</a>
+                <a class="tv-btn primary" href="#">Explore</a>
+              </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
     
     # Sidebar configuration
     with st.sidebar:
