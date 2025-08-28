@@ -1,68 +1,81 @@
 # QUANTFIN SOCIETY RESEARCH - Essential Files
 
-## Core Platform Files (Required)
+## Core Application Files
 
 ### Main Application
-- `main.py` - Main Streamlit web application interface
-- `advanced_gpt_analyst.py` - AI-powered market analysis engine
-- `analysis.py` - CAPM event study calculations and statistical testing
+- `main.py` - Primary Streamlit application entry point
+- `app.py` - Flask compatibility layer for HTTP servers
+- `streamlit_app.py` - Alternative Streamlit entry point
+
+### Analysis Modules
+- `analysis.py` - CAPM event study calculations and statistical analysis
+- `advanced_gpt_analyst.py` - AI-powered market analysis using GPT-4o
+- `openai_market_analyst.py` - OpenAI integration for market insights
+- `gpt_news_detector.py` - Automated news event detection
 - `market.py` - Market data collection and processing
-- `asset_search.py` - Universal asset search across all financial instruments
-- `alpha_vantage_data.py` - Alternative financial data source
-- `openai_market_analyst.py` - AI market interpretation module
+- `asset_search.py` - Universal asset search functionality
+- `alpha_vantage_data.py` - Alternative market data source
 
-### Setup & Configuration
-- `install_requirements.py` - Cross-platform dependency installer
-- `run_platform.py` - Universal launcher for Mac/Windows
-- `pyproject.toml` - Package configuration
-- `.env` - API keys and environment variables
-- `replit.md` - Project documentation and architecture
+### Deployment and Configuration
+- `startup.py` - Production startup script
+- `deploy_main.py` - Deployment entry point
+- `startup_render.sh` - Render-specific startup script
+- `deploy.sh` - Deployment shell script
+- `install_requirements.py` - Dependency installation script
+- `run_platform.py` - Platform launcher
 
-### Supporting Files
-- `README.md` - Platform documentation and usage guide
-- `generated-icon.png` - Platform icon
-- `.replit` - Replit configuration
+### Configuration Files
+- `pyproject.toml` - Python project dependencies and metadata
+- `Procfile` - Heroku deployment configuration
+- `.streamlit/config.toml` - Streamlit server configuration
+- `.gitignore` - Git ignore patterns
+- `manifest.json` - PWA manifest file
+- `service-worker.js` - Progressive Web App service worker
 
-## File Dependencies Map
+### Documentation
+- `README.md` - Main project documentation
+- `DEPLOYMENT_GUIDE.md` - Cloud platform deployment instructions
+- `FINAL_CHECKPOINT.md` - Project status and features summary
 
-```
-main.py
-├── advanced_gpt_analyst.py (AI analysis)
-├── analysis.py (CAPM calculations)
-├── market.py (data collection)
-├── asset_search.py (asset lookup)
-├── alpha_vantage_data.py (backup data)
-└── openai_market_analyst.py (AI interpretation)
-```
+### Assets and Static Files
+- `static/` - Static assets (icons, favicon)
+- `attached_assets/` - Project images and screenshots
+- `mobile/` - Mobile application files
 
-## Cross-Platform Compatibility
+## File Purposes
 
-### Windows Launch
-```cmd
-python install_requirements.py
-python run_platform.py
-```
+### Application Entry Points
+- **main.py**: Primary application with full functionality
+- **app.py**: HTTP server compatibility layer
+- **startup.py**: Production environment configuration
 
-### Mac/Linux Launch
-```bash
-python3 install_requirements.py
-python3 run_platform.py
-```
+### Analysis Engine
+- **analysis.py**: Core quantitative analysis algorithms
+- **advanced_gpt_analyst.py**: AI-powered market analysis
+- **market.py**: Data collection and market operations
 
-### Manual Launch
-```bash
-streamlit run main.py --server.port 5000
-```
+### Deployment
+- **startup_render.sh**: Render cloud platform startup
+- **deploy_main.py**: Production deployment entry point
+- **Procfile**: Heroku process configuration
 
-## Required API Keys
-- OPENAI_API_KEY (Essential)
-- ALPHA_VANTAGE_API_KEY (Backup data)
-- POLYGON_API_KEY (Optional)
+### Configuration
+- **pyproject.toml**: Python dependencies and project metadata
+- **.streamlit/config.toml**: Streamlit server settings
+- **.gitignore**: Version control exclusions
 
-## Minimum System Requirements
-- Python 3.11+
-- 4GB RAM
-- Internet connection
-- 500MB storage
+## Development Workflow
 
-Total Essential Files: 11 core files for full functionality
+1. **Local Development**: Use `python run_platform.py` or `streamlit run main.py`
+2. **Testing**: Run individual modules for specific functionality
+3. **Production**: Use `startup.py` or platform-specific scripts
+4. **Deployment**: Follow `DEPLOYMENT_GUIDE.md` for cloud platforms
+
+## File Dependencies
+
+- **main.py** depends on: analysis.py, market.py, advanced_gpt_analyst.py
+- **analysis.py** depends on: market.py, alpha_vantage_data.py
+- **advanced_gpt_analyst.py** depends on: openai_market_analyst.py
+- **startup.py** depends on: main.py and environment variables
+
+All files are designed to work together as a cohesive quantitative finance analysis platform.

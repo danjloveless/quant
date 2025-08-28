@@ -1,72 +1,101 @@
 # QUANTFIN SOCIETY RESEARCH - Deployment Guide
 
-## Replit Deployments Configuration
+## Cloud Platform Deployment Configuration
 
-This application is optimized for Replit Deployments with Autoscale configuration.
+This application is optimized for deployment on various cloud platforms with proper configuration.
 
-### Entry Points
-The application supports multiple entry points for maximum deployment compatibility:
+## 🚀 Supported Platforms
 
-1. **main.py** - Primary application file ✅
-2. **app.py** - Deployment compatibility layer ✅ 
-3. **streamlit_app.py** - Alternative entry point ✅
-4. **startup.py** - Production startup script ✅
+### Render
+- **Build Command**: `uv sync --frozen && uv cache prune --ci`
+- **Start Command**: `./startup_render.sh`
+- **Environment Variables**: Set `OPENAI_API_KEY` and `ALPHA_VANTAGE_API_KEY`
 
-### Configuration Files
+### Railway
+- **Build Command**: `uv sync --frozen`
+- **Start Command**: `streamlit run main.py --server.port $PORT`
+- **Configuration**: Use `railway.json` for automatic setup
 
-- **Procfile** - Deployment process configuration
-- **.streamlit/config.toml** - Streamlit production settings
-- **pyproject.toml** - Python dependencies
+### Heroku
+- **Build Command**: `pip install -r requirements.txt`
+- **Start Command**: `streamlit run main.py --server.port $PORT`
+- **Configuration**: Use `Procfile` for process management
 
-### Recommended Deployment Settings
+### Vercel
+- **Build Command**: `pip install -r requirements.txt`
+- **Start Command**: `streamlit run main.py --server.port $PORT`
+- **Configuration**: Use `vercel.json` for deployment settings
 
-For **Autoscale** deployment with your current configuration:
-- 4 vCPUs, 8 GiB RAM per machine
-- Max 10 machines
-- 880 compute units/s at max traffic
+### Fly.io
+- **Build Command**: `pip install -r requirements.txt`
+- **Start Command**: `streamlit run main.py --server.port $PORT`
+- **Configuration**: Use `fly.toml` for deployment settings
 
-### Deployment Command Options
+## 🔧 Environment Configuration
 
-The application can be started with any of these commands:
+### Required Environment Variables
+
 ```bash
-streamlit run main.py --server.port=5000 --server.address=0.0.0.0 --server.headless=true
-streamlit run app.py --server.port=5000 --server.address=0.0.0.0 --server.headless=true  
-streamlit run streamlit_app.py --server.port=5000 --server.address=0.0.0.0 --server.headless=true
-python startup.py
+OPENAI_API_KEY=your_openai_api_key_here
+ALPHA_VANTAGE_API_KEY=your_alpha_vantage_key_here
+PORT=5000  # Optional, auto-detected by most platforms
 ```
 
-### Recommended Run Command for Replit Deployments
+### Streamlit Server Configuration
 
-Copy this exact command into the "Run command" field:
-```
-streamlit run main.py --server.port=5000 --server.address=0.0.0.0 --server.headless=true --server.enableCORS=false --server.enableXsrfProtection=false
-```
+The application uses the following Streamlit server settings:
+- **Port**: 5000 (default) or `$PORT` environment variable
+- **Address**: 0.0.0.0 (all interfaces)
+- **Headless**: true (no browser launch)
+- **CORS**: disabled
+- **XSRF Protection**: disabled
+- **Usage Stats**: disabled
 
-**Note**: This matches the internal port 5000 configuration, which is forwarded to external port 80 by Replit's port forwarding.
+## 📋 Deployment Steps
 
-### Environment Variables
+### 1. Platform Selection
+Choose your preferred cloud platform from the supported options above.
 
-The application includes default API keys for immediate deployment:
-- OPENAI_API_KEY - Configured for GPT-4o market analysis
-- ALPHA_VANTAGE_API_KEY - Configured for market data
+### 2. Repository Connection
+Connect your GitHub repository to the chosen platform:
+- **Repository**: `https://github.com/QuantFin-Exeter/quant`
+- **Branch**: `main`
 
-### Production Optimizations
+### 3. Environment Variables
+Set the required environment variables in your platform's dashboard:
+- `OPENAI_API_KEY`
+- `ALPHA_VANTAGE_API_KEY`
 
-- Headless server mode enabled
-- CORS and XSRF protection disabled for deployment
-- Usage stats collection disabled
-- Development mode disabled
-- Production environment variables configured
+### 4. Build and Deploy
+Use the platform-specific build and start commands listed above.
 
-### Troubleshooting Deployment Issues
+### 5. Domain Configuration
+Configure your custom domain (e.g., `https://quantfin.it.com/`) in your platform's settings.
 
-If experiencing deployment failures or white screen:
+## 🛠️ Troubleshooting
 
-1. **IMPORTANT**: Use port 5000 for Replit Deployments (matches port forwarding configuration)
-2. **Run Command**: Use `streamlit run main.py --server.port=5000 --server.address=0.0.0.0 --server.headless=true`
-3. Verify all production environment variables are set (especially STREAMLIT_SERVER_PORT=5000)
-4. Check that the deployment uses one of the supported entry points (main.py, app.py, deploy_main.py)
-5. Confirm Streamlit outputs "URL: http://0.0.0.0:5000" in logs
-6. Ensure .streamlit/config.toml has port = 5000
+### Common Issues
 
-The application is now fully configured for successful deployment on Replit Deployments with Autoscale.
+1. **Port Configuration**: Ensure the port matches your platform's requirements
+2. **Environment Variables**: Verify all required variables are set
+3. **Dependencies**: Check that all Python packages are properly installed
+4. **API Keys**: Ensure API keys are valid and have sufficient quotas
+
+### Platform-Specific Issues
+
+- **Render**: Check build logs for dependency installation issues
+- **Railway**: Verify `railway.json` configuration
+- **Heroku**: Check `Procfile` format and dyno configuration
+- **Vercel**: Review `vercel.json` settings
+- **Fly.io**: Validate `fly.toml` configuration
+
+## ✅ Success Indicators
+
+After successful deployment:
+- Application starts without errors
+- All API endpoints respond correctly
+- Custom domain resolves properly
+- SSL certificate is active
+- Application is accessible via web browser
+
+The application is now fully configured for successful deployment on all supported cloud platforms.
