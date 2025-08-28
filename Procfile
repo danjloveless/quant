@@ -1,1 +1,1 @@
-web: streamlit run main.py --server.port=5000 --server.address=0.0.0.0 --server.headless=true --server.enableCORS=false --server.enableXsrfProtection=false
+web: streamlit run main.py --server.port=$PORT --server.address=0.0.0.0 --server.headless=true --server.enableCORS=false --server.enableXsrfProtection=false --server.maxUploadSize=200 --server.fileWatcherType=none

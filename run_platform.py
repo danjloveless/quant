@@ -1,83 +1,54 @@
 #!/usr/bin/env python3
 """
-QUANTFIN SOCIETY RESEARCH - Cross-Platform Launcher
-Universal launcher for Mac and Windows
+Fast platform launcher for QUANTFIN SOCIETY RESEARCH.
+Optimized for quick startup and minimal overhead.
 """
 
 import subprocess
 import sys
 import os
-import platform
-import time
+from pathlib import Path
 
-def check_dependencies():
-    """Check if all required packages are installed"""
-    required_packages = [
-        'streamlit', 'pandas', 'numpy', 'plotly', 'scipy', 
-        'yfinance', 'openai', 'requests', 'trafilatura'
-    ]
+def launch_platform():
+    """Launch the platform with optimized settings"""
     
-    missing_packages = []
+    print("🚀 Launching QUANTFIN SOCIETY RESEARCH platform...")
     
-    for package in required_packages:
-        try:
-            __import__(package)
-        except ImportError:
-            missing_packages.append(package)
+    # Set optimized environment variables
+    os.environ.setdefault('STREAMLIT_SERVER_PORT', '5000')
+    os.environ.setdefault('STREAMLIT_SERVER_ADDRESS', '0.0.0.0')
+    os.environ.setdefault('STREAMLIT_SERVER_HEADLESS', 'true')
+    os.environ.setdefault('STREAMLIT_SERVER_ENABLE_CORS', 'false')
+    os.environ.setdefault('STREAMLIT_SERVER_ENABLE_XSRF_PROTECTION', 'false')
+    os.environ.setdefault('STREAMLIT_BROWSER_GATHER_USAGE_STATS', 'false')
     
-    return missing_packages
-
-def launch_streamlit():
-    """Launch the Streamlit application"""
-    print("🚀 Launching QUANTFIN SOCIETY RESEARCH Platform...")
-    print(f"Platform: {platform.system()}")
-    print(f"Python: {sys.version}")
-    print("-" * 50)
+    # Performance optimizations
+    os.environ.setdefault('STREAMLIT_SERVER_MAX_UPLOAD_SIZE', '200')
+    os.environ.setdefault('STREAMLIT_SERVER_FILE_WATCHER_TYPE', 'none')
     
-    # Check dependencies
-    missing = check_dependencies()
-    if missing:
-        print(f"❌ Missing packages: {', '.join(missing)}")
-        print("Run: python install_requirements.py")
-        return False
-    
-    # Check if main.py exists
-    if not os.path.exists('main.py'):
-        print("❌ main.py not found in current directory")
-        return False
-    
-    # Launch Streamlit
     try:
-        print("🌐 Starting web server...")
-        print("📊 Access your application at: http://localhost:5000")
-        print("🛑 Press Ctrl+C to stop the server")
-        print("-" * 50)
+        # Get main.py path
+        main_path = Path(__file__).parent / 'main.py'
         
-        # Run streamlit with cross-platform compatibility
-        cmd = [sys.executable, "-m", "streamlit", "run", "main.py", 
-               "--server.port", "5000", 
-               "--server.address", "0.0.0.0",
-               "--server.headless", "true"]
+        if not main_path.exists():
+            print(f"❌ Error: main.py not found at {main_path}")
+            sys.exit(1)
         
-        subprocess.run(cmd)
+        print(f"📁 Application: {main_path}")
+        print(f"🌐 Port: {os.environ.get('STREAMLIT_SERVER_PORT', '5000')}")
+        print("🎯 Starting platform...")
+        
+        # Launch Streamlit with optimized settings
+        subprocess.run([
+            sys.executable, '-m', 'streamlit', 'run', 
+            str(main_path), '--server.port', os.environ.get('STREAMLIT_SERVER_PORT', '5000')
+        ], check=True)
         
     except KeyboardInterrupt:
-        print("\n🛑 Server stopped by user")
+        print("\n👋 Platform stopped by user")
     except Exception as e:
-        print(f"❌ Error launching application: {e}")
-        return False
-    
-    return True
-
-def main():
-    """Main launcher function"""
-    if len(sys.argv) > 1 and sys.argv[1] == "--install":
-        # Run installation
-        print("Running installation...")
-        subprocess.call([sys.executable, "install_requirements.py"])
-    else:
-        # Launch application
-        launch_streamlit()
+        print(f"❌ Error launching platform: {e}")
+        sys.exit(1)
 
 if __name__ == "__main__":
-    main()
+    launch_platform()

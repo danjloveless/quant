@@ -1,10 +1,15 @@
 # QUANTFIN SOCIETY RESEARCH
 
-## Professional Event Study Analysis Platform
-
-### 🎯 Overview
+## ⚡ Ultra-Fast Professional Event Study Analysis Platform
 
 Advanced quantitative finance platform for automated event study analysis using AI-powered news detection and CAPM-based abnormal returns modeling.
+
+### 🚀 One-Command Setup
+
+```bash
+# Ultra-fast setup and launch
+python quick_start.py all
+```
 
 ### ✨ Key Features
 
@@ -15,39 +20,21 @@ Advanced quantitative finance platform for automated event study analysis using 
 * **Cross-Platform**: Works on Mac, Windows, and Linux
 * **Production Ready**: Optimized for cloud deployment
 
-### 🚀 Quick Start
+### 🎯 Quick Start (30 seconds)
 
-#### 1. Installation
-
+#### 1. Clone Repository
 ```bash
-# Install Python dependencies
-python install_requirements.py
-
-# Or install manually
-pip install streamlit pandas numpy plotly scipy yfinance openai requests trafilatura python-dotenv polygon polygon-api-client
+git clone https://github.com/QuantFin-Exeter/quant.git
+cd quant
 ```
 
-#### 2. Configuration
-
-Create `.env` file with your API keys:
-
+#### 2. Ultra-Fast Setup
 ```bash
-OPENAI_API_KEY=your_openai_api_key_here
-ALPHA_VANTAGE_API_KEY=your_alpha_vantage_key_here
+python quick_start.py all
 ```
 
-#### 3. Launch Platform
-
-```bash
-# Easy launch
-python run_platform.py
-
-# Or direct launch
-streamlit run main.py --server.port 5000
-
-# Production deployment
-python startup.py
-```
+#### 3. Access Platform
+Open browser: http://localhost:5000
 
 ### 📋 System Requirements
 
@@ -56,16 +43,36 @@ python startup.py
 * **RAM**: 4GB minimum (8GB recommended)
 * **Internet**: Required for API calls
 
-### 🔧 Core Files
+### 🔧 Quick Commands
 
-* `main.py` - Main Streamlit application
-* `advanced_gpt_analyst.py` - AI analysis engine
-* `analysis.py` - CAPM event study calculations
-* `market.py` - Market data collection
-* `asset_search.py` - Universal asset search
-* `alpha_vantage_data.py` - Alternative data source
-* `startup.py` - Production startup script
-* `deploy_main.py` - Deployment entry point
+```bash
+# Ultra-fast setup
+python quick_start.py setup
+
+# Quick test
+python quick_start.py test
+
+# Quick launch
+python quick_start.py launch
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Test platform
+python test_platform.py
+
+# Monitor platform
+python monitor.py
+
+# Update platform
+python update.py all
+
+# Create backup
+python backup.py create
+
+# Generate docs
+python docs.py all
+```
 
 ### 🌐 Usage
 
@@ -77,50 +84,132 @@ python startup.py
 
 ### 🚀 Deployment
 
-#### Cloud Platforms
+#### Render (Recommended)
+```bash
+# Create deployment files
+python deploy_all.py files
 
-The platform is optimized for deployment on:
-- **Render**: Use `startup_render.sh` script
-- **Railway**: Use `railway.json` configuration
-- **Heroku**: Use `Procfile` configuration
-- **Vercel**: Use `vercel.json` configuration
-- **Fly.io**: Use `fly.toml` configuration
+# Deploy to Render
+python deploy_all.py render
+```
 
-#### Environment Variables
+#### Other Platforms
+```bash
+# Railway
+python deploy_all.py railway
 
-Required for deployment:
-- `OPENAI_API_KEY`: Your OpenAI API key
-- `ALPHA_VANTAGE_API_KEY`: Your Alpha Vantage API key
-- `PORT`: Server port (auto-detected by most platforms)
+# Vercel
+python deploy_all.py vercel
+
+# Fly.io
+python deploy_all.py fly
+
+# All platforms
+python deploy_all.py all
+```
+
+### 🔑 Environment Variables
+
+Create `.env` file:
+```env
+OPENAI_API_KEY=your_openai_api_key_here
+ALPHA_VANTAGE_API_KEY=your_alpha_vantage_key_here
+```
 
 ### 🛠️ Troubleshooting
 
-**Installation Issues:**
-
+**Quick Fixes:**
 ```bash
-# Force reinstall dependencies
-python install_requirements.py
+# Test platform
+python test_platform.py
 
-# Check Python version
-python --version  # Should be 3.11+
+# Update dependencies
+python update.py dependencies
+
+# Optimize performance
+python update.py optimize
+
+# Clean cache
+python update.py cache
 ```
 
-**API Issues:**
+**Common Issues:**
+- **Installation**: Run `python quick_start.py setup`
+- **API Errors**: Check `.env` file and API quotas
+- **Performance**: Run `python update.py optimize`
 
-* Verify API keys in `.env` file
-* Check internet connection
-* Ensure sufficient API quotas
+### 📊 Analysis Methods
 
-**Deployment Issues:**
+- **CAPM Model**: Capital Asset Pricing Model
+- **Abnormal Returns**: AR = R_actual - R_expected
+- **Cumulative AR**: CAR = Σ(AR) over event window
+- **Statistical Testing**: T-tests for significance
+- **AI Analysis**: GPT-4o powered insights
 
-* Check environment variables are set correctly
-* Verify port configuration matches platform requirements
-* Review platform-specific logs for errors
+### 🎯 Supported Assets
+
+- **Stocks**: AAPL, MSFT, GOOGL, TSLA, NVDA
+- **ETFs**: SPY, QQQ, IWM, VTI, VEA
+- **Indices**: ^GSPC, ^DJI, ^IXIC, ^RUT
+- **Cryptocurrencies**: BTC-USD, ETH-USD, SOL-USD
+- **Forex**: EURUSD=X, GBPUSD=X, JPYUSD=X
+
+### 📈 Performance Optimization
+
+- **Fast Loading**: Optimized CSS and minimal overhead
+- **Caching**: Intelligent result caching
+- **Parallel Processing**: Multi-asset analysis
+- **Memory Efficient**: Optimized data handling
+
+### 🔍 Monitoring & Maintenance
+
+```bash
+# Health check
+python monitor.py
+
+# Performance optimization
+python update.py optimize
+
+# Create backup
+python backup.py create
+
+# List backups
+python backup.py list
+
+# Restore backup
+python backup.py restore <file>
+```
+
+### 📚 Documentation
+
+```bash
+# Generate all docs
+python docs.py all
+
+# Quick start guide
+python docs.py quick
+
+# API documentation
+python docs.py api
+
+# User guide
+python docs.py user
+
+# Deployment guide
+python docs.py deploy
+```
 
 ### 👨‍💻 Developer
 
 **Maksim Kitikov** - QUANTFIN SOCIETY RESEARCH
 
+### 📞 Support
+
+- **Quick Test**: `python test_platform.py`
+- **Health Check**: `python monitor.py`
+- **Performance**: `python update.py optimize`
+- **Documentation**: `python docs.py all`
+
 ---
 
-_Professional quantitative finance analysis platform_
+*Professional quantitative finance analysis platform - Optimized for speed and performance*
