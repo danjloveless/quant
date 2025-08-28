@@ -1,4 +1,10 @@
-# QUANTFIN SOCIETY RESEARCH
+# 🚀 QUANTFIN SOCIETY RESEARCH - Ultra-Fast Professional Event Study Analysis Platform
+
+[![Version](https://img.shields.io/badge/version-v2.2.0-blue.svg)](https://github.com/QuantFin-Exeter/quant/releases/tag/v2.2.0)
+[![Status](https://img.shields.io/badge/status-active-success.svg)](https://quantfin.it.com/)
+[![Platform](https://img.shields.io/badge/platform-independent-brightgreen.svg)](https://github.com/QuantFin-Exeter/quant)
+
+**Latest Update: TradingView-like UI with modern design and ultra-fast performance**
 
 ## ⚡ Ultra-Fast Professional Event Study Analysis Platform
 
