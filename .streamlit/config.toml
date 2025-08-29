@@ -1,19 +1,21 @@
+[global]
+developmentMode = false
+
 [server]
-headless = true
-address = "0.0.0.0"
 port = 5000
+address = "0.0.0.0"
+headless = true
 enableCORS = false
 enableXsrfProtection = false
 maxUploadSize = 200
+fileWatcherType = "none"
 
 [browser]
 gatherUsageStats = false
 
 [theme]
-primaryColor = "#3282b8"
-backgroundColor = "#ffffff"
-secondaryBackgroundColor = "#f0f2f6"
-textColor = "#262730"
-
-[global]
-developmentMode = false
+primaryColor = "#00d4aa"
+backgroundColor = "#131722"
+secondaryBackgroundColor = "#1e222d"
+textColor = "#d1d4dc"
+font = "Inter"
