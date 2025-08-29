@@ -324,7 +324,7 @@ QUANTFIN SOCIETY RESEARCH is a professional quantitative finance platform for au
 ### Step 4: Interpret Results
 1. **Summary Tab**: Key metrics and statistics
 2. **Charts Tab**: Interactive visualizations
-3. **AI Insights Tab**: AI-generated analysis
+3. **AI Insights Tab**: AI-powered analysis
 
 ## 📈 Understanding Results
 

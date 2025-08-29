@@ -15,7 +15,7 @@ warnings.filterwarnings("ignore")
 
 # Production configuration
 def setup_production():
-    """Configure production environment settings"""
+    """Configure production environment settings for deployment"""
     os.environ.setdefault('STREAMLIT_SERVER_PORT', '5000')
     os.environ.setdefault('STREAMLIT_SERVER_ADDRESS', '0.0.0.0')
     os.environ.setdefault('STREAMLIT_SERVER_HEADLESS', 'true')
@@ -214,7 +214,7 @@ html, body, [class^="css"] {
     border-radius: 6px;
     font-weight: 500;
     font-size: 0.9rem;
-    cursor: pointer;
+    pointer-events: auto;
     transition: all 0.2s ease;
 }
 
@@ -480,7 +480,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Lazy-initialized components to speed up first paint
+# Lazy-initialized components for performance optimization
 class NewsAnalyzer:
     """Financial news detection and analysis system"""
     
@@ -559,7 +559,7 @@ class AIAnalyst:
             st.error(f"AI analysis error: {e}")
             return None
 
-# Cached getters (lazy creation on first use)
+# Cached component getters for performance optimization
 @st.cache_resource
 def get_news_analyzer() -> NewsAnalyzer:
     return NewsAnalyzer()
@@ -717,7 +717,7 @@ def main():
             run_ai_analysis(event_date, event_description, assets, estimation_window, event_window)
 
 def run_manual_analysis(event_date, event_description, assets, estimation_window, event_window):
-    """Run manual event study analysis"""
+    """Execute manual event study analysis with CAPM model"""
     
     with st.spinner("Running event study analysis..."):
         analyzer = get_event_study_analyzer()
@@ -729,10 +729,10 @@ def run_manual_analysis(event_date, event_description, assets, estimation_window
             display_results(results, assets)
 
 def run_ai_analysis(event_date, event_description, assets, estimation_window, event_window):
-    """Run AI-powered analysis"""
+    """Execute AI-powered market analysis with news detection"""
     
     with st.spinner("Running AI-powered analysis..."):
-        # Fetch news data (cached analyzer, I/O happens only on first call per session)
+        # Fetch news data using cached analyzer for performance
         news = get_news_analyzer()
         news_data = news.fetch_financial_news(str(event_date))
         
@@ -823,7 +823,7 @@ def display_results(results, assets, ai_insights=None):
             """, unsafe_allow_html=True)
 
 def display_analysis_results(results):
-    """Display detailed analysis results with TradingView-style design"""
+    """Display detailed analysis results with professional TradingView-style design"""
     
     if 'abnormal_returns' in results:
         st.markdown("""
@@ -832,7 +832,7 @@ def display_analysis_results(results):
         </div>
         """, unsafe_allow_html=True)
         
-        # Convert to DataFrame for display
+        # Convert results to DataFrame for display
         ar_df = pd.DataFrame(results['abnormal_returns'])
         st.markdown("""
         <div class="tv-card">
@@ -846,7 +846,7 @@ def display_analysis_results(results):
         """, unsafe_allow_html=True)
         st.dataframe(ar_df, use_container_width=True)
         
-        # Statistical summary
+        # Display statistical summary
         if 'statistics' in results:
             st.markdown("""
             <div style="margin: 2rem 0 1rem 0;">
@@ -867,7 +867,7 @@ def display_analysis_results(results):
             st.dataframe(stats_df, use_container_width=True)
 
 def display_charts(results):
-    """Display interactive charts with TradingView-style design"""
+    """Display interactive charts with professional TradingView-style design"""
     
     if 'charts' in results:
         st.markdown("""
@@ -876,7 +876,7 @@ def display_charts(results):
         </div>
         """, unsafe_allow_html=True)
         
-        # Display each chart
+        # Display each chart with professional styling
         for chart_name, chart_data in results['charts'].items():
             st.markdown(f"""
             <div class="tv-card">
@@ -891,7 +891,7 @@ def display_charts(results):
             st.plotly_chart(chart_data, use_container_width=True)
 
 def display_ai_insights(ai_insights):
-    """Display AI-generated insights with TradingView-style design"""
+    """Display AI-powered market insights with TradingView-style design"""
     
     st.markdown("""
     <div style="margin-bottom: 1rem;">
@@ -906,7 +906,7 @@ def display_ai_insights(ai_insights):
                 <div class="tv-card-header">
                     <div>
                         <h4 class="tv-card-title">🔍 {key}</h4>
-                        <p class="tv-card-subtitle">AI-generated insight</p>
+                        <p class="tv-card-subtitle">AI-powered insight</p>
                     </div>
                 </div>
                 <p style="color: #d1d4dc; font-size: 0.9rem; margin: 1rem 0;">{value}</p>
@@ -918,7 +918,7 @@ def display_ai_insights(ai_insights):
             <div class="tv-card-header">
                 <div>
                     <h4 class="tv-card-title">🤖 AI Analysis</h4>
-                    <p class="tv-card-subtitle">GPT-powered insights</p>
+                    <p class="tv-card-subtitle">Advanced AI insights</p>
                 </div>
             </div>
             <p style="color: #d1d4dc; font-size: 0.9rem; margin: 1rem 0;">{ai_insights}</p>

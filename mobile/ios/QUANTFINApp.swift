@@ -13,7 +13,7 @@ struct QUANTFINApp: App {
 
 struct ContentView: View {
     var body: some View {
-        WebView(url: URL(string: "https://quantfinexeter.replit.app")!)
+        WebView(url: URL(string: "https://quantfin.it.com")!)
             .edgesIgnoringSafeArea(.all)
     }
 }

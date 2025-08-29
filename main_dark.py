@@ -10,10 +10,10 @@ from datetime import datetime, timedelta
 import os
 import warnings
 
-# Suppress warnings
+# Suppress warnings for cleaner output
 warnings.filterwarnings("ignore")
 
-# Force dark theme immediately
+# Force dark theme immediately with comprehensive overrides
 st.markdown("""
 <style>
 /* NUCLEAR OPTION - Force everything dark */
@@ -162,7 +162,7 @@ header { display: none !important; }
     border-radius: 6px !important;
     font-weight: 500 !important;
     font-size: 0.9rem !important;
-    cursor: pointer !important;
+    pointer-events: auto !important;
     transition: all 0.2s ease !important;
 }
 

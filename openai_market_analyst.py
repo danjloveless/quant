@@ -50,7 +50,7 @@ class OpenAIMarketAnalyst:
             event_context: Economic context for the event
             
         Returns:
-            Dictionary containing AI-generated analysis components
+            Dictionary containing AI-powered analysis components
         """
         
         prompt = f"""

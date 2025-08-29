@@ -14,7 +14,7 @@ import android.os.Build;
 
 public class MainActivity extends AppCompatActivity {
     private WebView webView;
-    private static final String URL = "https://quantfinexeter.replit.app";
+            private static final String URL = "https://quantfin.it.com";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
