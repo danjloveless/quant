@@ -8,143 +8,114 @@
 
 ## ⚡ Ultra-Fast Professional Event Study Analysis Platform
 
-Advanced quantitative finance platform for automated event study analysis using AI-powered news detection and CAPM-based abnormal returns modeling.
+This is a professional quantitative finance platform for event study analysis, reorganized into distinct sections for better maintainability and development workflow.
 
-### 🚀 One-Command Setup
+## 📁 Repository Structure
 
-```bash
-# Ultra-fast setup and launch
-python quick_start.py all
-```
+### 🖥️ **src/** - Core Application Source Code
+- **frontend/** - User interface and frontend logic
+  - `main.py` - Primary Streamlit application
+  - `app.py` - HTTP server compatibility layer
+  - `streamlit_app.py` - Alternative Streamlit entry point
+  - `main_dark.py` - Dark theme variant
+  - `pwa_integration.py` - Progressive Web App integration
+  - `service-worker.js` - Service worker for PWA
 
-### ✨ Key Features
+- **backend/** - Analysis engines and AI-powered insights
+  - `analysis.py` - Core quantitative analysis algorithms
+  - `advanced_gpt_analyst.py` - AI-powered market analysis
+  - `openai_market_analyst.py` - OpenAI integration for market insights
+  - `gpt_news_detector.py` - Financial news detection system
 
-* **AI News Detection**: Automatic identification of market-moving events
-* **CAPM Analysis**: Professional abnormal returns calculation
-* **Interactive Charts**: Real-time visualization with Plotly
-* **Multi-Asset Support**: Stocks, ETFs, indices, and more
-* **Cross-Platform**: Works on Mac, Windows, and Linux
-* **Production Ready**: Optimized for cloud deployment
+- **data/** - Data ingestion and market data handling
+  - `market.py` - Market data collection and operations
+  - `alpha_vantage_data.py` - Alpha Vantage API integration
+  - `asset_search.py` - Asset search and discovery
 
-### 🎯 Quick Start (30 seconds)
+### 🏗️ **infrastructure/** - Deployment and Configuration
+- **deployment/** - Cloud platform deployment scripts
+  - `startup.py` - Production startup script
+  - `deploy_main.py` - Main deployment entry point
+  - `startup_render.sh` - Render-specific startup
+  - `deploy.sh` - Shell deployment script
+  - `deploy_all.py` - Multi-platform deployment
+  - `Procfile` - Heroku process configuration
 
-#### 1. Clone Repository
-```bash
-git clone https://github.com/QuantFin-Exeter/quant.git
-cd quant
-```
+- **config/** - Configuration files and dependencies
+  - `pyproject.toml` - Python project metadata and dependencies
+  - `requirements.txt` - Python package requirements
+  - `manifest.json` - PWA manifest configuration
+  - `.streamlit/` - Streamlit server configuration
+  - `uv.lock` - UV package manager lock file
 
-#### 2. Ultra-Fast Setup
-```bash
-python quick_start.py all
-```
+### 🛠️ **tools/** - Utility Scripts and Management
+- `backup.py` - Data backup and restore utilities
+- `monitor.py` - Platform monitoring and health checks
+- `update.py` - Update and optimization scripts
+- `clear_cache.py` - Cache management
+- `install_requirements.py` - Dependency installation
+- `run_platform.py` - Platform launcher
+- `test_platform.py` - Testing utilities
+- `quick_start.py` - Quick setup script
+- `docs.py` - Documentation generation
 
-#### 3. Access Platform
-Open browser: http://localhost:5000
+### 📱 **mobile/** - Mobile Applications
+- iOS and Android applications for the platform
+- See `mobile/README.md` for mobile-specific documentation
 
-### 📋 System Requirements
+### 📚 **docs/** - Documentation
+- `README.md` - Main project documentation (original)
+- `DEPLOYMENT_GUIDE.md` - Cloud platform deployment guide
+- `ESSENTIAL_FILES.md` - File structure documentation
+- `FINAL_CHECKPOINT.md` - Project status summary
 
-* **Python**: 3.11 or higher
-* **OS**: Windows 10+, macOS 10.15+, Linux
-* **RAM**: 4GB minimum (8GB recommended)
-* **Internet**: Required for API calls
+### 🎨 **assets/** - Static Assets and Resources
+- Icons, images, logos, and screenshots
+- Favicon files and PWA icons
+- Project assets and visual resources
 
-### 🔧 Quick Commands
+## 🚀 Quick Start
 
-```bash
-# Ultra-fast setup
-python quick_start.py setup
+1. **Setup Environment**:
+   ```bash
+   python tools/quick_start.py setup
+   ```
 
-# Quick test
-python quick_start.py test
+2. **Run Locally**:
+   ```bash
+   python tools/run_platform.py
+   # OR
+   streamlit run src/frontend/main.py
+   ```
 
-# Quick launch
-python quick_start.py launch
+3. **Deploy to Cloud**:
+   ```bash
+   python infrastructure/deployment/deploy_all.py render
+   ```
 
-# Install dependencies
-pip install -r requirements.txt
+## 🔑 Environment Variables
 
-# Test platform
-python test_platform.py
-
-# Monitor platform
-python monitor.py
-
-# Update platform
-python update.py all
-
-# Create backup
-python backup.py create
-
-# Generate docs
-python docs.py all
-```
-
-### 🌐 Usage
-
-1. Select analysis mode (Manual or AI Detection)
-2. Choose event date and description
-3. Select assets for analysis
-4. Run comprehensive event study
-5. Review statistical results and AI insights
-
-### 🚀 Deployment
-
-#### Render (Recommended)
-```bash
-# Create deployment files
-python deploy_all.py files
-
-# Deploy to Render
-python deploy_all.py render
-```
-
-#### Other Platforms
-```bash
-# Railway
-python deploy_all.py railway
-
-# Vercel
-python deploy_all.py vercel
-
-# Fly.io
-python deploy_all.py fly
-
-# All platforms
-python deploy_all.py all
-```
-
-### 🔑 Environment Variables
-
-Create `.env` file:
+Create `.env` file in the root directory:
 ```env
 OPENAI_API_KEY=your_openai_api_key_here
 ALPHA_VANTAGE_API_KEY=your_alpha_vantage_key_here
 ```
 
-### 🛠️ Troubleshooting
+## 📖 Documentation
 
-**Quick Fixes:**
-```bash
-# Test platform
-python test_platform.py
+- **Quick Start**: See `tools/quick_start.py`
+- **Deployment**: See `docs/DEPLOYMENT_GUIDE.md`
+- **API Documentation**: Run `python tools/docs.py api`
+- **User Guide**: Run `python tools/docs.py user`
 
-# Update dependencies
-python update.py dependencies
+## 🔧 Development
 
-# Optimize performance
-python update.py optimize
+- **Test Platform**: `python tools/test_platform.py`
+- **Monitor Health**: `python tools/monitor.py`
+- **Update Dependencies**: `python tools/update.py dependencies`
+- **Generate Documentation**: `python tools/docs.py all`
 
-# Clean cache
-python update.py cache
-```
-
-**Common Issues:**
-- **Installation**: Run `python quick_start.py setup`
-- **API Errors**: Check `.env` file and API quotas
-- **Performance**: Run `python update.py optimize`
-
-### 📊 Analysis Methods
+## 📊 Analysis Methods
 
 - **CAPM Model**: Capital Asset Pricing Model
 - **Abnormal Returns**: AR = R_actual - R_expected
@@ -152,70 +123,10 @@ python update.py cache
 - **Statistical Testing**: T-tests for significance
 - **AI Analysis**: GPT-4o powered insights
 
-### 🎯 Supported Assets
-
-- **Stocks**: AAPL, MSFT, GOOGL, TSLA, NVDA
-- **ETFs**: SPY, QQQ, IWM, VTI, VEA
-- **Indices**: ^GSPC, ^DJI, ^IXIC, ^RUT
-- **Cryptocurrencies**: BTC-USD, ETH-USD, SOL-USD
-- **Forex**: EURUSD=X, GBPUSD=X, JPYUSD=X
-
-### 📈 Performance Optimization
-
-- **Fast Loading**: Optimized CSS and minimal overhead
-- **Caching**: Intelligent result caching
-- **Parallel Processing**: Multi-asset analysis
-- **Memory Efficient**: Optimized data handling
-
-### 🔍 Monitoring & Maintenance
-
-```bash
-# Health check
-python monitor.py
-
-# Performance optimization
-python update.py optimize
-
-# Create backup
-python backup.py create
-
-# List backups
-python backup.py list
-
-# Restore backup
-python backup.py restore <file>
-```
-
-### 📚 Documentation
-
-```bash
-# Generate all docs
-python docs.py all
-
-# Quick start guide
-python docs.py quick
-
-# API documentation
-python docs.py api
-
-# User guide
-python docs.py user
-
-# Deployment guide
-python docs.py deploy
-```
-
-### 👨‍💻 Developer
+## 👨‍💻 Developer
 
 **Maksim Kitikov** - QUANTFIN SOCIETY RESEARCH
 
-### 📞 Support
-
-- **Quick Test**: `python test_platform.py`
-- **Health Check**: `python monitor.py`
-- **Performance**: `python update.py optimize`
-- **Documentation**: `python docs.py all`
-
 ---
 
-*Professional quantitative finance analysis platform - Optimized for speed and performance*
+*Professional quantitative finance platform with organized, maintainable codebase*

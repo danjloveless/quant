@@ -15,4 +15,4 @@ export STREAMLIT_SERVER_MAX_UPLOAD_SIZE=200
 export STREAMLIT_SERVER_FILE_WATCHER_TYPE=none
 
 # Start application
-streamlit run main.py
+streamlit run src/frontend/main.py

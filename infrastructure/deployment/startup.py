@@ -37,8 +37,8 @@ def start_application():
         setup_environment()
         
         # Get application path
-        app_dir = Path(__file__).parent
-        main_app = app_dir / 'main.py'
+        app_dir = Path(__file__).parent.parent.parent
+        main_app = app_dir / 'src' / 'frontend' / 'main.py'
         
         if not main_app.exists():
             print(f"Error: main.py not found at {main_app}")

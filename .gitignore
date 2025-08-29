@@ -56,19 +56,37 @@ logs/
 *.tmp
 *.temp
 .cache/
+temp/
+tmp/
 
 # Streamlit
-.streamlit/secrets.toml
+infrastructure/config/.streamlit/secrets.toml
 
 # Jupyter
 .ipynb_checkpoints/
 
-# Data files
+# Data files (exclude actual data, keep structure)
 *.csv
 *.xlsx
-*.json
-data/
+data/*.csv
+data/*.xlsx
+src/data/cache/
+src/data/temp/
 
 # API keys and secrets
 secrets.json
 config.json
+
+# Testing artifacts
+test_reorganization.py
+
+# Build and deployment artifacts
+infrastructure/deployment/*.log
+tools/cache/
+tools/temp/
+
+# Mobile build artifacts
+mobile/ios/build/
+mobile/android/build/
+mobile/*/bin/
+mobile/*/obj/

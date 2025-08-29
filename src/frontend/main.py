@@ -29,7 +29,7 @@ setup_production()
 # Page configuration
 st.set_page_config(
     page_title="QUANTFIN SOCIETY RESEARCH",
-    page_icon="static/favicon.png",
+    page_icon="../../assets/favicon.png",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -485,7 +485,13 @@ class NewsAnalyzer:
     """Financial news detection and analysis system"""
     
     def __init__(self):
-        from gpt_news_detector import GPTNewsDetector
+        try:
+            from ..backend.gpt_news_detector import GPTNewsDetector
+        except ImportError:
+            import sys
+            import os
+            sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
+            from src.backend.gpt_news_detector import GPTNewsDetector
         self.news_collector = GPTNewsDetector()
     
     def fetch_financial_news(self, date_str, keywords=None):
@@ -500,8 +506,14 @@ class EventStudyAnalyzer:
     """CAPM-based event study analysis system"""
     
     def __init__(self):
-        from analysis import EventStudyAnalysis
-        self.analyzer = EventStudyAnalysis()
+        try:
+            from ..backend.analysis import EventStudyAnalyzer as ESA
+        except ImportError:
+            import sys
+            import os
+            sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
+            from src.backend.analysis import EventStudyAnalyzer as ESA
+        self.analyzer = ESA()
     
     def run_analysis(self, event_date, event_description, assets, estimation_window=252, event_window=11):
         """Run comprehensive event study analysis"""
@@ -518,8 +530,14 @@ class MarketDataManager:
     """Market data collection and management"""
     
     def __init__(self):
-        from market import MarketDataCollector
-        self.collector = MarketDataCollector()
+        try:
+            from ..data.market import MarketAnalyzer
+        except ImportError:
+            import sys
+            import os
+            sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
+            from src.data.market import MarketAnalyzer
+        self.collector = MarketAnalyzer()
     
     def get_asset_data(self, symbol, start_date, end_date):
         """Get market data for asset"""
@@ -533,7 +551,13 @@ class AssetSearcher:
     """Universal asset search functionality"""
     
     def __init__(self):
-        from asset_search import AssetSearch
+        try:
+            from ..data.asset_search import AssetSearch
+        except ImportError:
+            import sys
+            import os
+            sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
+            from src.data.asset_search import AssetSearch
         self.searcher = AssetSearch()
     
     def search_assets(self, query):
@@ -548,7 +572,13 @@ class AIAnalyst:
     """AI-powered market analysis"""
     
     def __init__(self):
-        from advanced_gpt_analyst import AdvancedGPTAnalyst
+        try:
+            from ..backend.advanced_gpt_analyst import AdvancedGPTAnalyst
+        except ImportError:
+            import sys
+            import os
+            sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
+            from src.backend.advanced_gpt_analyst import AdvancedGPTAnalyst
         self.analyst = AdvancedGPTAnalyst()
     
     def analyze_market_impact(self, event_data, market_data):
