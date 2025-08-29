@@ -28,7 +28,7 @@ def launch_platform():
     
     try:
         # Get main.py path
-        main_path = Path(__file__).parent / 'main.py'
+        main_path = Path(__file__).parent.parent / 'src' / 'frontend' / 'main.py'
         
         if not main_path.exists():
             print(f"❌ Error: main.py not found at {main_path}")
