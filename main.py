@@ -34,6 +34,86 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# Force dark theme CSS - applied immediately
+st.markdown("""
+<style>
+/* Force dark theme override */
+.stApp {
+    background: #131722 !important;
+    color: #d1d4dc !important;
+}
+
+.stApp > header {
+    background: #1e222d !important;
+    border-bottom: 1px solid #363c4e !important;
+}
+
+.stApp > footer {
+    background: #1e222d !important;
+    color: #787b86 !important;
+}
+
+/* Hide Streamlit elements */
+#MainMenu { visibility: hidden !important; }
+footer { visibility: hidden !important; }
+header { visibility: hidden !important; }
+
+/* Force all text to be light */
+.stApp * {
+    color: #d1d4dc !important;
+}
+
+/* Override Streamlit default colors */
+.stApp .main .block-container {
+    background: #131722 !important;
+    color: #d1d4dc !important;
+}
+
+.stApp .sidebar .sidebar-content {
+    background: #1e222d !important;
+    color: #d1d4dc !important;
+}
+
+/* Force all inputs to dark theme */
+.stTextInput > div > div > input,
+.stSelectbox > div > div > div,
+.stDateInput > div > div > input,
+.stTextArea > div > div > textarea {
+    background: #2a2e39 !important;
+    border: 1px solid #363c4e !important;
+    color: #d1d4dc !important;
+}
+
+/* Force all buttons to TradingView style */
+.stButton > button {
+    background: linear-gradient(135deg, #00d4aa 0%, #0099cc 100%) !important;
+    border: none !important;
+    color: #131722 !important;
+    font-weight: 600 !important;
+}
+
+/* Force sidebar to dark */
+.stApp .css-1d391kg {
+    background: #1e222d !important;
+}
+
+/* Force main content area */
+.stApp .main .block-container {
+    background: #131722 !important;
+    padding: 2rem !important;
+}
+
+/* Force all text elements */
+.stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6 {
+    color: #ffffff !important;
+}
+
+.stApp p, .stApp span, .stApp div {
+    color: #d1d4dc !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
 # TradingView-inspired dark theme CSS
 st.markdown("""
 <style>
@@ -45,11 +125,6 @@ html, body, [class^="css"] {
     background: #131722 !important;
     color: #d1d4dc !important;
 }
-
-/* Hide Streamlit elements */
-#MainMenu { visibility: hidden; }
-footer { visibility: hidden; }
-header { visibility: hidden; }
 
 /* TradingView-style top navigation */
 .tv-header {
